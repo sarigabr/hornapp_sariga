@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_person_black_48dp"
+            android:title="My Profile" />
+        <item
+            android:id="@+id/nav_cars"
+            android:icon="@drawable/ic_directions_car_black_48dp"
+            android:title="My Cars" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_contact"
+                android:icon="@drawable/ic_perm_contact_calendar_black_48dp"
+                android:title="Contact Us" />
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_horn_black_48dp"
+                android:title="About App" />
+            <item
+                android:id="@+id/nav_privacy"
+                android:icon="@drawable/ic_lock_black_48dp"
+                android:title="Privacy Policy" />
+            <item
+                android:id="@+id/nav_terms"
+                android:icon="@drawable/ic_content_paste_black_48dp"
+                android:title="Terms and Conditions" />
+        </menu>
+    </item>
+
+</menu>
