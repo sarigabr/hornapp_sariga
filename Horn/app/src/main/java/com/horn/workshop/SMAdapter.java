@@ -17,7 +17,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
+
 import java.util.ArrayList;
+
+import app.AppController;
 
 //import static android.support.v4.app.ActivityCompat.startActivity;
 
@@ -105,7 +110,7 @@ private Context context;
         TextView address1 = holder.Address;
         TextView phone1 = holder.Phone;
         TextView category1 = holder.Category;
-        ImageView picture1 = holder.Picture;
+        final ImageView picture1 = holder.Picture;
         TextView rating1 = holder.Rating;
        // TextView id = holder.id_;
 
@@ -114,7 +119,23 @@ private Context context;
         address1.setText(workshopDataSet.get(listPosition).getAddress());
         phone1.setText(workshopDataSet.get(listPosition).getPhone());
         category1.setText(workshopDataSet.get(listPosition).getCategory());
-        picture1.setImageResource(workshopDataSet.get(listPosition).getProfilepic());
+        String url = workshopDataSet.get(listPosition).getProfilepic();
+        ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+        imageLoader.get(url, new ImageLoader.ImageListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Log.e(TAG, "Image Load Error: " + error.getMessage());
+            }
+
+            @Override
+            public void onResponse(ImageLoader.ImageContainer response, boolean arg1) {
+                if (response.getBitmap() != null) {
+                    // load image into imageview
+                    picture1.setImageBitmap(response.getBitmap());
+                }
+            }
+        });
 holder.setItem(workshopDataSet.get(listPosition).getworkshopid());
         rating1.setText(workshopDataSet.get(listPosition).getrating());
     }

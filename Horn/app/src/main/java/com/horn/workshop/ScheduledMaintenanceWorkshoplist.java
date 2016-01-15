@@ -35,38 +35,38 @@ import static com.horn.workshop.R.drawable.a;
 public class ScheduledMaintenanceWorkshoplist extends AppCompatActivity {
 
 
-        private static RecyclerView.Adapter adapter;
-        private RecyclerView.LayoutManager layoutManager;
-        private static RecyclerView recyclerView;
-        public static ArrayList<WorkshopDatas> workshop;
+    private static RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private static RecyclerView recyclerView;
+    public static ArrayList<WorkshopDatas> workshop;
     private static final String TAG = "SM_workshopdata_search";
     public SMLocalStore smLocalStore;
     public static String[] nameArray;
     public static String[] phoneArray;
-    public static String[]  categoryArray;
-    public static String[]  addressArray ;
- public static Integer[] picArray;
+    public static String[] categoryArray;
+    public static String[] addressArray;
+    public static Integer[] picArray;
     public static String[] profilepicArray;
     public static Integer[] workshopidArray;
-    public static String[] ratingArray,coordinateArray;
-
+    public static String[] ratingArray, coordinateArray;
 
 
     //  static View.OnClickListener myOnClickListener;
 
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.scheduled_maintenance_workshoplist);
-            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
-            search_workshop();
-            // myOnClickListener = new MyOnClickListener(this);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.scheduled_maintenance_workshoplist);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        search_workshop();
+        // myOnClickListener = new MyOnClickListener(this);
 
 
-        }
-//    public void new_activity_launch(String workshopid)
+    }
+
+    //    public void new_activity_launch(String workshopid)
 //    {
 //        Intent intent1 = new Intent(this, ScheduledMaintenanceDetail.class);
 //                startActivity(intent1);
@@ -83,12 +83,12 @@ public class ScheduledMaintenanceWorkshoplist extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         workshop = new ArrayList<WorkshopDatas>();
         for (int i = 0; i < nameArray.length; i++) {
-                        workshop.add(new WorkshopDatas(
+            workshop.add(new WorkshopDatas(
                     nameArray[i],
                     addressArray[i],
                     phoneArray[i],
                     categoryArray[i],
-                    picArray[i],
+                    profilepicArray[i],
                     workshopidArray[i],
                     ratingArray[i]
             ));
@@ -99,8 +99,8 @@ public class ScheduledMaintenanceWorkshoplist extends AppCompatActivity {
         adapter = new SMAdapter(workshop);
         recyclerView.setAdapter(adapter);
     }
-    public void search_workshop()
-    {
+
+    public void search_workshop() {
     /*
     *Datas from DB starts
     */
@@ -115,41 +115,41 @@ public class ScheduledMaintenanceWorkshoplist extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject != null) {
-                          int len = jsonObject.length();
+                        int len = jsonObject.length();
                         JSONArray phoneArrayj = jsonObject.getJSONArray("number");
                         JSONArray nameArrayj = jsonObject.getJSONArray("name");
                         JSONArray categoryArrayj = jsonObject.getJSONArray("category");
                         JSONArray addressArrayj = jsonObject.getJSONArray("address");
                         JSONArray workshopidArrayj = jsonObject.getJSONArray("workshopid");
-                         JSONArray ratingArrayj = jsonObject.getJSONArray("rating");
+                        JSONArray ratingArrayj = jsonObject.getJSONArray("rating");
                         JSONArray profilepicArrayj = jsonObject.getJSONArray("profilepic");
                         JSONArray coordinateArrayj = jsonObject.getJSONArray("coordinates");
 
-                          nameArray = new String[nameArrayj.length()];
+                        nameArray = new String[nameArrayj.length()];
                         phoneArray = new String[nameArrayj.length()];
                         categoryArray = new String[nameArrayj.length()];
                         addressArray = new String[nameArrayj.length()];
                         picArray = new Integer[nameArrayj.length()];
                         workshopidArray = new Integer[nameArrayj.length()];
-                       ratingArray = new String[ratingArrayj.length()];
+                        ratingArray = new String[ratingArrayj.length()];
                         profilepicArray = new String[profilepicArrayj.length()];
                         coordinateArray = new String[coordinateArrayj.length()];
-                        for(int i=0;i<nameArrayj.length();i++)
-                        {
-                            phoneArray[i]=phoneArrayj.getString(i);
-                            nameArray[i]=nameArrayj.getString(i);
-                            categoryArray[i]=categoryArrayj.getString(i);
-                            addressArray[i]=addressArrayj.getString(i);
-                             picArray[i]= R.drawable.workshop_sample;
-                            workshopidArray[i]=workshopidArrayj.getInt(i);
-                            ratingArray[i]=ratingArrayj.getString(i);
-                            profilepicArray[i]="http://blueripples.org/horn/ajax-data/profilepics/"+profilepicArrayj.getString(i);
-                            coordinateArray[i]=coordinateArrayj.getString(i);
+
+                        for (int i = 0; i < nameArrayj.length(); i++) {
+                            phoneArray[i] = phoneArrayj.getString(i);
+                            nameArray[i] = nameArrayj.getString(i);
+                            categoryArray[i] = categoryArrayj.getString(i);
+                            addressArray[i] = addressArrayj.getString(i);
+                            picArray[i] = R.drawable.workshop_sample;
+                            workshopidArray[i] = workshopidArrayj.getInt(i);
+                            ratingArray[i] = ratingArrayj.getString(i);
+                            profilepicArray[i] = "http://blueripples.org/horn/ajax-data/profilepics/" + profilepicArrayj.getString(i);
+                            coordinateArray[i] = coordinateArrayj.getString(i);
 
                         }
 
                         search_workshop_display();
-                   }
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -183,5 +183,5 @@ public class ScheduledMaintenanceWorkshoplist extends AppCompatActivity {
     *Datas from db ends
      */
 
-    }
+}
 

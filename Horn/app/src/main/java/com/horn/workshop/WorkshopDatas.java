@@ -10,12 +10,12 @@ String name;
 String address;
   String Phone;
     String category;
-int image;
+String image;
     int workshopid;
     String rating;
 //int id_;
 
-    public WorkshopDatas(String name, String address,String phone,String category, int image,int workshopid,String rating) {
+    public WorkshopDatas(String name, String address,String phone,String category, String image,int workshopid,String rating) {
         this.name = name;
         this.address = address;
         this.Phone = phone;
@@ -42,7 +42,8 @@ int image;
     public String getPhone() {
         return Phone;
     }
-    public int getProfilepic() {
+
+    public String getProfilepic() {
         return image;
     }
 public int getworkshopid(){return workshopid;}

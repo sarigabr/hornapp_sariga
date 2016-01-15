@@ -20,6 +20,7 @@ import android.widget.Spinner;
 public class ScheduledMaintenanaceHome extends AppCompatActivity {
 
     private SMLocalStore smLocalStore;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +28,7 @@ public class ScheduledMaintenanaceHome extends AppCompatActivity {
 
         /** SM vehicle dropdown **/
 
-        Spinner dropdown = (Spinner)findViewById(R.id.vehicle);
+        Spinner dropdown = (Spinner) findViewById(R.id.vehicle);
         String[] items = new String[]{"Etios", "Innova", "Fortuner"};
         final String varient = "1";
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
@@ -35,11 +36,11 @@ public class ScheduledMaintenanaceHome extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        final String[] sm_service = new String[]{"1000", "5000", "10000","15000","20000","25000"};
-         for (int i = 0; i < sm_service.length; i++)
-        { final Button myButton = new Button(this);
+        final String[] sm_service = new String[]{"1000", "5000", "10000", "15000", "20000", "25000"};
+        for (int i = 0; i < sm_service.length; i++) {
+            final Button myButton = new Button(this);
             myButton.setText(sm_service[i]);
-            LinearLayout ll = (LinearLayout)findViewById(R.id.sm_service);
+            LinearLayout ll = (LinearLayout) findViewById(R.id.sm_service);
             ActionBar.LayoutParams lp = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
             ll.addView(myButton, lp);
             final String service = sm_service[i];
@@ -48,13 +49,13 @@ public class ScheduledMaintenanaceHome extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-                   smLocalStore = new SMLocalStore(ScheduledMaintenanaceHome.this);
-                    Spinner spinner = (Spinner)findViewById(R.id.vehicle);
+                    smLocalStore = new SMLocalStore(ScheduledMaintenanaceHome.this);
+                    Spinner spinner = (Spinner) findViewById(R.id.vehicle);
                     String vehicle = spinner.getSelectedItem().toString();
-                   smLocalStore.setSMhome(vehicle,service,varient);
+                    smLocalStore.setSMhome(vehicle, service, varient);
 
-                    Intent launchActivity1= new Intent(ScheduledMaintenanaceHome.this,ScheduledMaintenanceDesc.class);
-                   startActivity(launchActivity1);
+                    Intent launchActivity1 = new Intent(ScheduledMaintenanaceHome.this, ScheduledMaintenanceDesc.class);
+                    startActivity(launchActivity1);
                 }
             });
         }
